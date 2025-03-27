@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Visiteur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\dao\ServiceVisiteur;
@@ -51,8 +52,20 @@ class VisiteurController extends Controller
     {
         $serviceVisiteur = new ServiceVisiteur();
         $serviceVisiteur->logout();
-        return view('home');
+        return redirect('/');
     }
 
+    public function index()
+    {
+        $serviceVisiteur = new ServiceVisiteur();
+        $visiteurs = $serviceVisiteur->search();
+        $erreur = "";
+        try {
+            return view('vues/Rechercher', compact('visiteurs'));
+        } catch (Exception $e) {
+            $erreur = "Une erreur s'est produite lors de la recherche : " . $e->getMessage();
+            return redirect()->route('vues/Rechercher')->withErrors(['erreur' => $erreur]);
+        }
+    }
 
 }

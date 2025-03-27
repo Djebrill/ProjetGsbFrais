@@ -15,19 +15,22 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar+ bvn"></span>
                         </button>
-                        <a class="navbar-brand" href="{{url('/')}}">GSB Frais</a>
                     </div>
                     @if (Session::get('id') == 0)
+                        <a class="navbar-brand" href="{{url('/')}}">GSB Frais</a>
                         <div class="collapse navbar-collapse" id="navbar-collapse-target">
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="{{url('/formLogin')}}" data-toggle="collapse" data-target=".navbar-collapse.in">Se connecter</a></li>
                             </ul>
                         </div>
                     @else
+                        <a class="navbar-brand" href="{{url('/debut')}}">GSB Frais</a>
                         <div class="collapse navbar-collapse" id="navbar-collapse-target">
                             <ul class="nav navbar-nav">
-                                <li><a href="" data-toggle="collapse" data-target=".navbar-collapse.in">Lister</a></li>
-                                <li><a href="" data-toggle="collapse" data-target=".navbar-collapse.in">Ajouter</a></li>
+                                <li><a href="/rechercher" data-toggle="collapse" data-target=".navbar-collapse.in">Rechercher</a></li>
+                                <li><a href="/inviter" data-toggle="collapse" data-target=".navbar-collapse.in">Inviter</a></li>
+                                <li><a href="/activite" data-toggle="collapse" data-target=".navbar-collapse.in">Activité Complementaire</a></li>
+                                <li><a href="{{url('/getListeFrais')}}" data-toggle="collapse" data-target=".navbar-collapse.in">Liste fiches de frais</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li>

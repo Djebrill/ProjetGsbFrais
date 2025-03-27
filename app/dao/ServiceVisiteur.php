@@ -2,6 +2,8 @@
 
 namespace App\dao;
 
+use App\Models\Laboratoire;
+use App\Models\Visiteur;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\QueryException;
@@ -33,6 +35,16 @@ class ServiceVisiteur
     public function logout() {
         Session::put('id', 0);
     }
+
+    public function search() {
+        try {
+            $visiteurs = Visiteur::with('laboratoire')->get();
+        } catch (QueryException $e) {
+            throw new MonException($e->getMessage(), 5);
+        }
+        return $visiteurs;
+    }
+
 
 }
 
